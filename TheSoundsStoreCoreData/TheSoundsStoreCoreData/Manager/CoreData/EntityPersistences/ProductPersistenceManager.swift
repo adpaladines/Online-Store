@@ -15,7 +15,13 @@ class ProductPersistenceManager: CoreDataOperationsProtocol {
     init(context: NSManagedObjectContext) {
         self.context = context
     }
-    
+
+    func fetchDataFromDatabase() async throws -> [ProductEntity] {
+        let request: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
+        let result = try context.fetch(request)
+        return result.reversed()
+    }
+
     func saveDataIntoDatabase(items: [Product]) async throws {
         try await deleteAllRecords()
                 
@@ -45,14 +51,10 @@ class ProductPersistenceManager: CoreDataOperationsProtocol {
     }
     
     func deleteAllRecords() async throws {
-        do {
-            let coreDataGenericManager: GenericPersistenceManager = GenericPersistenceManager()
-            let productEntity = ProductEntity(context: PersistenceController.shared.container.viewContext)
-            try await coreDataGenericManager.clearData(entity: productEntity)
-        }catch let error {
-            print(error.localizedDescription)
-        }
+        let coreDataGenericManager: GenericPersistenceManager = GenericPersistenceManager(context: context)
+        try await coreDataGenericManager.clearData(entityType: ProductEntity.self)
     }
+
     
 }
 

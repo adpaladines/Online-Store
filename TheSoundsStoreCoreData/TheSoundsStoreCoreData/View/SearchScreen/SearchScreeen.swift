@@ -87,7 +87,7 @@ struct SearchScreeen: View {
             loading = false
         }
         
-        productList = await viewModel.getProductsListFromGenericDB() ?? []
+        productList = await viewModel.getProductsListFromGenericDB()
 
     }
     

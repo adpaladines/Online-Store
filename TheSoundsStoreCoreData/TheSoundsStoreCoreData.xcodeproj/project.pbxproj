@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021549062A8AACEE0064E3D3 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021549052A8AACEE0064E3D3 /* PaymentManager.swift */; };
 		021727C42A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 021727C22A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodeld */; };
 		021727C92A6EF55800CF5EA2 /* ProductPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021727C72A6EF55800CF5EA2 /* ProductPersistenceManager.swift */; };
 		021727CA2A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021727C82A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift */; };
@@ -81,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		021549032A8AAC8D0064E3D3 /* TheSoundsStoreCoreData.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheSoundsStoreCoreData.entitlements; sourceTree = "<group>"; };
+		021549052A8AACEE0064E3D3 /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		021727C32A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheSoundsStoreCoreData.xcdatamodel; sourceTree = "<group>"; };
 		021727C72A6EF55800CF5EA2 /* ProductPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPersistenceManager.swift; sourceTree = "<group>"; };
 		021727C82A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataOperationsProtocol.swift; sourceTree = "<group>"; };
@@ -166,9 +169,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021549042A8AACC50064E3D3 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				021549052A8AACEE0064E3D3 /* PaymentManager.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
 		021727BC2A6EF35E00CF5EA2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				021549042A8AACC50064E3D3 /* Payments */,
 				021727BD2A6EF36C00CF5EA2 /* CoreData */,
 				025B141E2A67262C00C49D3D /* Network */,
 			);
@@ -227,6 +239,7 @@
 		024A68BA2A656F1300E480B1 /* TheSoundsStoreCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				021549032A8AAC8D0064E3D3 /* TheSoundsStoreCoreData.entitlements */,
 				021727BC2A6EF35E00CF5EA2 /* Manager */,
 				DDD65FDE2A6E0AC800F2BC3B /* Info.plist */,
 				DDD65FD82A6E093A00F2BC3B /* Extensions */,
@@ -626,6 +639,7 @@
 				024A68F82A659DDF00E480B1 /* GridCell.swift in Sources */,
 				024A69022A65D1B700E480B1 /* UserInfoBarView.swift in Sources */,
 				021727C92A6EF55800CF5EA2 /* ProductPersistenceManager.swift in Sources */,
+				021549062A8AACEE0064E3D3 /* PaymentManager.swift in Sources */,
 				021727C42A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodeld in Sources */,
 				DD0401802A6DBDEA00D2042B /* UserSignInData.swift in Sources */,
 				02E1E05F2A704E250060D737 /* GenericPersistenceManager.swift in Sources */,
@@ -792,9 +806,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TheSoundsStoreCoreData/TheSoundsStoreCoreData.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TheSoundsStoreCoreData/Preview Content\"";
+				DEVELOPMENT_TEAM = 2GR6A495Q5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheSoundsStoreCoreData/Info.plist;
@@ -822,9 +838,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TheSoundsStoreCoreData/TheSoundsStoreCoreData.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TheSoundsStoreCoreData/Preview Content\"";
+				DEVELOPMENT_TEAM = 2GR6A495Q5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheSoundsStoreCoreData/Info.plist;

@@ -143,7 +143,7 @@ struct MyCartScreen: View {
 
             }else {
                 WideButton(text: "Proceed to checkout") {
-                    print("Continue no checkout.")
+                    viewModel.makePayment()
                 }
                 .padding([.horizontal])
                 .padding([.bottom])

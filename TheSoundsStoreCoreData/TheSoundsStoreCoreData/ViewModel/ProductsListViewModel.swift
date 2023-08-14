@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import PassKit
+import SwiftUI
 
 @MainActor //it is similar to work with DispatchQueue.main.async
 class ProductsListViewModel: ObservableObject {
@@ -16,12 +18,17 @@ class ProductsListViewModel: ObservableObject {
     @Published var recentsList = [Product]()
     @Published var cartList = [Product]()
     @Published var userInfo: UserInfo?
-    
+    @Published var paymentStatus: Bool = false
+
     @Published var subtotalAmount: Int = 0
     @Published var totalDiscountAmount: Int = 0
     @Published var totalAmount: Int = 0
     
     @Published var categoriesList: [String] = []
+
+    @ObservedObject var paymentManager: PaymentManager = PaymentManager()
+
+    let context = PersistenceController.shared.container.newBackgroundContext()
 
     var networkManager: NetworkAbleProtocol
     
@@ -65,9 +72,7 @@ class ProductsListViewModel: ObservableObject {
             customErrorList[errorContext] = NetworkError.getNetwork(error: error)
         }
     }
-    
-    
-    
+
     func getProductsList(for category: ProducResponseKeyName = ProducResponseKeyName.defaultValue) -> [Product]? {
         productsResponseList[category.rawValue]?.products
     }
@@ -83,26 +88,21 @@ class ProductsListViewModel: ObservableObject {
 extension ProductsListViewModel {
     
     func saveProducsListInDB(items: [Product]) async throws {
-        let coreDataManager: ProductPersistenceManager = ProductPersistenceManager(context: PersistenceController.shared.container.viewContext)
+        let coreDataManager: ProductPersistenceManager = ProductPersistenceManager(context: context)
         try await coreDataManager.saveDataIntoDatabase(items: defaultList)
     }
     
-    func getProductsListFromGenericDB() async -> [Product]? {
-        try await PersistenceController.shared.container.performBackgroundTask { privateContext in
-            do {
-                
-                let coreDataGenericManager: GenericPersistenceManager = GenericPersistenceManager()
-                let productEntity = ProductEntity(context: PersistenceController.shared.container.viewContext)
-                let myDBList = try await coreDataGenericManager.fetchDataFromDatabase(entity: productEntity)
-                let productsList = myDBList.compactMap({Product(from: $0)})
-                return productsList
-            }catch let error {
-                print(error.localizedDescription)
-            }
+    func getProductsListFromGenericDB() async -> [Product] {
+        do {
+            let coreDataManager = ProductPersistenceManager(context: context)
+            let myDBList = try await coreDataManager.fetchDataFromDatabase()
+
+            let productsList = myDBList.compactMap({Product(from: $0)})
+            return productsList
+        }catch let error {
+            print(error.localizedDescription)
             return []
         }
-
-        
     }
 }
 
@@ -160,6 +160,34 @@ extension ProductsListViewModel {
         cartList.remove(at: index)
         recalculateValues()
     }
+
+    func makePayment() {
+        var paymentItems: [PKPaymentSummaryItem] = []
+        var summaryItems: [PKPaymentSummaryItem] = []
+
+        var subtotalAmount = 0
+        cartList.forEach { product in
+            let quantity = (product.quantity ?? 1)
+            let totalByItem = product.price * quantity
+            let extraQuantitytext = quantity > 1 ? " x \(quantity)" : ""
+            subtotalAmount += totalByItem
+            summaryItems.append(
+                PKPaymentSummaryItem(
+                    label: "\(product.title)\(extraQuantitytext)",
+                    amount: NSDecimalNumber(value: totalByItem)
+                )
+            )
+        }
+        let totalAmount = subtotalAmount - totalDiscountAmount
+        paymentItems.append(contentsOf: summaryItems)
+        paymentItems.append(PKPaymentSummaryItem(label: "Subtotal amount", amount: NSDecimalNumber(value: subtotalAmount), type: .final))
+        paymentItems.append(PKPaymentSummaryItem(label: "Total Discounts", amount: NSDecimalNumber(value: totalDiscountAmount), type: .final))
+        paymentItems.append(PKPaymentSummaryItem(label: "WellShop's Checkout", amount: NSDecimalNumber(value: totalAmount), type: .final))
+
+        paymentManager.payNowButtonTapped(summaryItems: paymentItems) { success in
+            self.paymentStatus = success
+        }
+    }
     
     private func recalculateValues() {
         calculateStotalAmount()
@@ -189,6 +217,8 @@ extension ProductsListViewModel {
         totalAmount = subtotalAmount - totalDiscountAmount
         print("new totalAmount: \(totalAmount)")
     }
+
+
 }
 
 

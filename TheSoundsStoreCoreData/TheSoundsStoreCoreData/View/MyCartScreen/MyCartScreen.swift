@@ -39,7 +39,8 @@ struct MyCartScreen: View {
     @State var totalDiscount: Int = 0
     @State var subTotal: Int = 0
     @State var total: Int = 0
-    
+    @State var paymentStatus: Bool = false
+
     private func delete(at offsets: IndexSet) {
         guard let index = offsets.first else {
             return
@@ -143,11 +144,14 @@ struct MyCartScreen: View {
 
             }else {
                 WideButton(text: "Proceed to checkout") {
-                    viewModel.makePayment()
+                    viewModel.makePayment() { success in
+                        paymentStatus = success
+                    }
                 }
                 .padding([.horizontal])
                 .padding([.bottom])
             }
+
             
 
         }
@@ -165,6 +169,12 @@ struct MyCartScreen: View {
             subTotal = viewModel.subtotalAmount
             total = viewModel.totalAmount
             totalDiscount = viewModel.totalDiscountAmount
+        }
+        .alert(isPresented: $paymentStatus) {
+            Alert(
+                title: Text(paymentStatus ? "Success!" : "We got an error!"),
+                message: Text(paymentStatus ? "Your payment was processed successfully." : "We got an error with your payment.\nTry again latter."),
+                dismissButton: Alert.Button.default(Text("Ok")))
         }
     }
 }

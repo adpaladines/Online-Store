@@ -161,7 +161,7 @@ extension ProductsListViewModel {
         recalculateValues()
     }
 
-    func makePayment() {
+    func makePayment(completion: @escaping (Bool) -> Void) {
         var paymentItems: [PKPaymentSummaryItem] = []
         var summaryItems: [PKPaymentSummaryItem] = []
 
@@ -186,6 +186,8 @@ extension ProductsListViewModel {
 
         paymentManager.payNowButtonTapped(summaryItems: paymentItems) { success in
             self.paymentStatus = success
+            self.cartList = success ? [] : self.cartList
+            completion(success)
         }
     }
     

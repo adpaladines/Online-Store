@@ -18,6 +18,7 @@ class PaymentManager: NSObject, ObservableObject {
 
     func payNowButtonTapped(summaryItems: [PKPaymentSummaryItem], completion: @escaping PaymentManagerCompletion) {
         self.completionHandler = completion
+        self.paymentStatus = .failure
         let paymentRequest = paymentRequest(summaryItems: summaryItems)
         
         if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: [.masterCard,.amex,.visa,.discover]) {

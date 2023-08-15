@@ -32,7 +32,7 @@ extension PaymentStatus: LocalizedError, Equatable {
         case .success:
             myError = NSLocalizedString("Payment Successfully!", comment: "success")
         case .failure:
-            myError = NSLocalizedString("Payment failed.", comment: "failure")
+            myError = NSLocalizedString("We got an error with your payment.\nTry again latter.", comment: "failure")
         case .inProcess:
             myError = NSLocalizedString("Payment in progress.", comment: "inProcess")
         case .none:

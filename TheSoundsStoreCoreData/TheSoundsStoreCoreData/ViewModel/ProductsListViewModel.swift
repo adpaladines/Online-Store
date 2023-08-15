@@ -187,16 +187,17 @@ extension ProductsListViewModel {
         paymentItems.append(PKPaymentSummaryItem(label: "WellShop's Checkout", amount: NSDecimalNumber(value: totalAmount), type: .final))
 
         paymentManager.payNowButtonTapped(summaryItems: paymentItems) { status in
+            
             self.paymentStatus = status
             self.cartList = (status == .success) ? [] : self.cartList
 
-            if status == .failure || status == .success {
+            if status == .success {
                 self.paymentFinished = true
-
             }
-            if status == .none || status == .inProcess {
+            if status == .failure || status == .none || status == .inProcess {
                 self.paymentFinished = false
             }
+            print("Payment Status:", self.paymentStatus)
             print("Payment Progress:", self.paymentFinished)
         }
 

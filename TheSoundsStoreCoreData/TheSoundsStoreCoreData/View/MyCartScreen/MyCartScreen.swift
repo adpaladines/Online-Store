@@ -40,7 +40,6 @@ struct MyCartScreen: View {
     @State var totalDiscount: Int = 0
     @State var subTotal: Int = 0
     @State var total: Int = 0
-//    @State var paymentStatus: PaymentStatus = .none
     @State var paymentFinished: Bool = false
 
     private func delete(at offsets: IndexSet) {
@@ -84,7 +83,6 @@ struct MyCartScreen: View {
                                 .lineLimit(1)
                             Spacer()
                         }
-//                        .padding([.horizontal])
                         .padding([.top])
                         .padding([.bottom], 4)
                         
@@ -113,16 +111,10 @@ struct MyCartScreen: View {
                                 .frame(height: 2)
                             CartAmounts(leftText: "Total", rightText: "$ \(total)")
                         }
-//                        .padding([.horizontal])
                     }
-                    
                 }
                 .background(Color.gray)
-//                .edgesIgnoringSafeArea(.horizontal)
-                .onChange(of: viewModel.paymentFinished) { newValue in
-                    paymentFinished = viewModel.paymentFinished
-                    print("Payment View: \(paymentFinished)")
-                }
+
             }else {
                 VStack(alignment: .center) {
                     Spacer()
@@ -138,7 +130,6 @@ struct MyCartScreen: View {
                     Spacer()
                 }
             }
-            
             
             if viewModel.cartList.count == 0 {
                 WideButton(text: "Add new items", disabled: true) {
@@ -171,10 +162,14 @@ struct MyCartScreen: View {
             total = viewModel.totalAmount
             totalDiscount = viewModel.totalDiscountAmount
         }
+        .onChange(of: viewModel.paymentStatus) { newValue in
+            paymentFinished = viewModel.paymentFinished
+            //print("Payment View: \(paymentFinished)")
+        }
         .alert(isPresented: $paymentFinished) {
             Alert(
-                title: Text(paymentFinished ? "Success!" : "We got an error!"),
-                message: Text(paymentFinished ? "Your payment was processed successfully." : "We got an error with your payment.\nTry again latter."),
+                title: Text("Alert!"),
+                message: Text(viewModel.paymentStatus.localizedDescription),//"Your payment was processed successfully." : "We got an error with your payment.\nTry again latter."),
                 dismissButton: Alert.Button.default(Text("Ok"))
             )
         }

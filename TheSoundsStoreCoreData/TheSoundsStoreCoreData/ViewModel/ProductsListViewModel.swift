@@ -18,7 +18,8 @@ class ProductsListViewModel: ObservableObject {
     @Published var recentsList = [Product]()
     @Published var cartList = [Product]()
     @Published var userInfo: UserInfo?
-    @Published var paymentStatus: Bool = false
+    @Published var paymentStatus: PaymentStatus = .none
+    @Published var paymentFinished: Bool = false
 
     @Published var subtotalAmount: Int = 0
     @Published var totalDiscountAmount: Int = 0
@@ -161,7 +162,8 @@ extension ProductsListViewModel {
         recalculateValues()
     }
 
-    func makePayment(completion: @escaping (Bool) -> Void) {
+//    func makePayment(completion: @escaping (Bool) -> Void) {
+    func makePayment() {
         var paymentItems: [PKPaymentSummaryItem] = []
         var summaryItems: [PKPaymentSummaryItem] = []
 
@@ -184,11 +186,20 @@ extension ProductsListViewModel {
         paymentItems.append(PKPaymentSummaryItem(label: "Total Discounts", amount: NSDecimalNumber(value: totalDiscountAmount), type: .final))
         paymentItems.append(PKPaymentSummaryItem(label: "WellShop's Checkout", amount: NSDecimalNumber(value: totalAmount), type: .final))
 
-        paymentManager.payNowButtonTapped(summaryItems: paymentItems) { success in
-            self.paymentStatus = success
-            self.cartList = success ? [] : self.cartList
-            completion(success)
+        paymentManager.payNowButtonTapped(summaryItems: paymentItems) { status in
+            self.paymentStatus = status
+            self.cartList = (status == .success) ? [] : self.cartList
+
+            if status == .failure || status == .success {
+                self.paymentFinished = true
+
+            }
+            if status == .none || status == .inProcess {
+                self.paymentFinished = false
+            }
+            print("Payment Progress:", self.paymentFinished)
         }
+
     }
     
     private func recalculateValues() {
@@ -248,3 +259,4 @@ extension ProductsListViewModel {
             }
         }
 }
+

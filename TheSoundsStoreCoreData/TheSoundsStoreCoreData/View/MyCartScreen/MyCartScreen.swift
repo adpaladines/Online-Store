@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HidableTabView
+import PassKit
 
 struct CartAmounts: View {
     
@@ -39,7 +40,8 @@ struct MyCartScreen: View {
     @State var totalDiscount: Int = 0
     @State var subTotal: Int = 0
     @State var total: Int = 0
-    @State var paymentStatus: Bool = false
+//    @State var paymentStatus: PaymentStatus = .none
+    @State var paymentFinished: Bool = false
 
     private func delete(at offsets: IndexSet) {
         guard let index = offsets.first else {
@@ -117,6 +119,10 @@ struct MyCartScreen: View {
                 }
                 .background(Color.gray)
 //                .edgesIgnoringSafeArea(.horizontal)
+                .onChange(of: viewModel.paymentFinished) { newValue in
+                    paymentFinished = viewModel.paymentFinished
+                    print("Payment View: \(paymentFinished)")
+                }
             }else {
                 VStack(alignment: .center) {
                     Spacer()
@@ -144,16 +150,11 @@ struct MyCartScreen: View {
 
             }else {
                 WideButton(text: "Proceed to checkout") {
-                    viewModel.makePayment() { success in
-                        paymentStatus = success
-                    }
+                    viewModel.makePayment()
                 }
                 .padding([.horizontal])
                 .padding([.bottom])
             }
-
-            
-
         }
         .redacted(reason: loading ? .placeholder: [])
         .onAppear {
@@ -170,11 +171,12 @@ struct MyCartScreen: View {
             total = viewModel.totalAmount
             totalDiscount = viewModel.totalDiscountAmount
         }
-        .alert(isPresented: $paymentStatus) {
+        .alert(isPresented: $paymentFinished) {
             Alert(
-                title: Text(paymentStatus ? "Success!" : "We got an error!"),
-                message: Text(paymentStatus ? "Your payment was processed successfully." : "We got an error with your payment.\nTry again latter."),
-                dismissButton: Alert.Button.default(Text("Ok")))
+                title: Text(paymentFinished ? "Success!" : "We got an error!"),
+                message: Text(paymentFinished ? "Your payment was processed successfully." : "We got an error with your payment.\nTry again latter."),
+                dismissButton: Alert.Button.default(Text("Ok"))
+            )
         }
     }
 }
@@ -183,15 +185,9 @@ struct MyCartScreen_Previews: PreviewProvider {
     
     static var previews: some View {
         let viewModel = ProductsListViewModel(networkManager: NetworkManager())
-        
-//        MyCartScreen()
-//            .environmentObject(ProductsListViewModel(networkManager: NetworkManager()))
-//            .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
-//                        .previewDisplayName("iPhone SE (3rd generation)")
         MyCartScreen()
             .environmentObject(viewModel)
-                        .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
-                                    .previewDisplayName("iPhone 14 Pro")
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+            .previewDisplayName("iPhone 14 Pro")
     }
-    
 }

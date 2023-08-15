@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021549062A8AACEE0064E3D3 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021549052A8AACEE0064E3D3 /* PaymentManager.swift */; };
+		021549082A8ADC330064E3D3 /* PaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021549072A8ADC330064E3D3 /* PaymentError.swift */; };
 		021727C42A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 021727C22A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodeld */; };
 		021727C92A6EF55800CF5EA2 /* ProductPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021727C72A6EF55800CF5EA2 /* ProductPersistenceManager.swift */; };
 		021727CA2A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021727C82A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		021549032A8AAC8D0064E3D3 /* TheSoundsStoreCoreData.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheSoundsStoreCoreData.entitlements; sourceTree = "<group>"; };
 		021549052A8AACEE0064E3D3 /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
+		021549072A8ADC330064E3D3 /* PaymentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentError.swift; sourceTree = "<group>"; };
 		021727C32A6EF47B00CF5EA2 /* TheSoundsStoreCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheSoundsStoreCoreData.xcdatamodel; sourceTree = "<group>"; };
 		021727C72A6EF55800CF5EA2 /* ProductPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPersistenceManager.swift; sourceTree = "<group>"; };
 		021727C82A6EF55800CF5EA2 /* CoreDataOperationsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataOperationsProtocol.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				021549052A8AACEE0064E3D3 /* PaymentManager.swift */,
+				021549072A8ADC330064E3D3 /* PaymentError.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021549082A8ADC330064E3D3 /* PaymentError.swift in Sources */,
 				024A68F42A658B5E00E480B1 /* TabBarControllerScreen.swift in Sources */,
 				024A69062A661B0C00E480B1 /* WideButton.swift in Sources */,
 				024A690A2A66346700E480B1 /* HLine.swift in Sources */,

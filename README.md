@@ -22,5 +22,10 @@ Apple Payments
   And Features list. 
 
 ### Process
-- [ ] Products App Integrate Apple Pay on Cart screen.
+- [x] Products App Integrate Apple Pay on Cart screen.
 - [x] Final project
+
+
+![image_one](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_1.png?token=GHSAT0AAAAAACEQQYWR2PONFCZOFW5NLDE2ZG4YGSQ)
+![image_two](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_2.png?token=GHSAT0AAAAAACEQQYWQQN54SJ26RIKYKS44ZG4YHSA)
+![image_three](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_3.png?token=GHSAT0AAAAAACEQQYWQL4TFOHR7FWMC7PXIZG4YHWQ)

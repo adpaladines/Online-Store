@@ -17,4 +17,4 @@ Apple Payments
 
 | Capture Description | Screenshot 1 | Screenshot 2 | Screenshot 3 | 
 |--|--|--|--|
-| Cart Screen | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/ef057128-cd71-4618-b1e9-76252cd80ef7) | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/9552a165-b659-43b1-b968-d504ce1b1d07) | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/60c022dd-bea7-4bca-811c-dca344e4a5ea) |
+| Cart Screen | ![image](./cart_1.png) | ![image](./cart_2.png) | ![image](./cart_3.png) |

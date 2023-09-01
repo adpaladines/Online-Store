@@ -25,7 +25,8 @@ Apple Payments
 - [x] Products App Integrate Apple Pay on Cart screen.
 - [x] Final project
 
+![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/ef057128-cd71-4618-b1e9-76252cd80ef7)
 
-![image_one](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_1.png?token=GHSAT0AAAAAACEQQYWR2PONFCZOFW5NLDE2ZG4YGSQ)
-![image_two](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_2.png?token=GHSAT0AAAAAACEQQYWQQN54SJ26RIKYKS44ZG4YHSA)
-![image_three](https://raw.githubusercontent.com/apaladines-techconsulting/Assignment_33/main/cart_3.png?token=GHSAT0AAAAAACEQQYWQL4TFOHR7FWMC7PXIZG4YHWQ)
+![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/9552a165-b659-43b1-b968-d504ce1b1d07)
+
+![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/60c022dd-bea7-4bca-811c-dca344e4a5ea)

@@ -1,4 +1,4 @@
-# Assignment_33
+# The Sounds Store
 Apple Payments
 ## Author: Andres D. Paladines
 
@@ -14,19 +14,7 @@ Apple Payments
 [SwiftUI-image]: https://img.shields.io/badge/SwiftUI-3.0-orange?style=for-the-badge&logo=swift&logoColor=white
 [SwiftUI-url]: https://developer.apple.com/xcode/swiftui/
 
-1. In Earlier Products App Integrate Apple pay on Cart screen.
 
-2. For Final project please work:
-  Collect all screen shots of design.
-  API Endpoint
-  And Features list. 
-
-### Process
-- [x] Products App Integrate Apple Pay on Cart screen.
-- [x] Final project
-
-![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/ef057128-cd71-4618-b1e9-76252cd80ef7)
-
-![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/9552a165-b659-43b1-b968-d504ce1b1d07)
-
-![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/60c022dd-bea7-4bca-811c-dca344e4a5ea)
+| Capture Description | Screenshot 1 | Screenshot 2 | Screenshot 3 | 
+|--|--|--|--|
+| Cart Screen | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/ef057128-cd71-4618-b1e9-76252cd80ef7) | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/9552a165-b659-43b1-b968-d504ce1b1d07) | ![image](https://github.com/apaladines-techconsulting/Assignment_33/assets/138136886/60c022dd-bea7-4bca-811c-dca344e4a5ea) |

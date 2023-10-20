@@ -11,8 +11,12 @@ Apple Payments
 [license-image]: https://img.shields.io/badge/License-MIT-blue?style=for-the-badge
 [license-url]: LICENSE
 
+![GitHub repo size](https://img.shields.io/github/repo-size/adpaladines/The-Sounds-Store?style=for-the-badge)
+
 [SwiftUI-image]: https://img.shields.io/badge/SwiftUI-3.0-orange?style=for-the-badge&logo=swift&logoColor=white
 [SwiftUI-url]: https://developer.apple.com/xcode/swiftui/
+
+
 
 App manages light and dark themes.
 
